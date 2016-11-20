@@ -7,3 +7,4 @@ Algoriths so far
 * Two Opt Swap
 * Three Opt Swap
 * Simmulated Annealing
+* Genetic Algorithm

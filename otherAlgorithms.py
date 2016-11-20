@@ -4,35 +4,6 @@ import copy
 ################
 ## IMPORTANT ###
 ################
-def setup():
-    # if you want the program to run, set this to True
-    global run
-    run = True
-
-    # if this is true, then the turtle module will draw out the points on a canvas
-    global UI
-    UI = True
-
-    # if you want the distances to be printed, set this to true
-    global print_distances
-    print_distances = True
-
-    # if you want there to be trials, set this >1
-    global num_trials
-    num_trials = 10
-
-    # point-related variables
-    global num_points,range_of_coords
-    num_points = 50
-    range_of_coords = 400 # This is the range of the coordinates.
-
-    # Genetic algorithm variables
-    global generations,crossover_rate,mutation_rate,population,frequency_stats
-    generations = 300
-    crossover_rate = 1.0
-    mutation_rate = 0.02
-    population = 80
-    frequency_stats = None
 # This function is used to make a lambda function with a x and y value
 # If you don't put a x, y, or z value when you are making points, it will automatically be 0
 def Point(x=0,y=0):
@@ -49,12 +20,12 @@ def generate_points(quantity,_range_):
 # 3D pythag distance
 def pythag_distance(point1,point2):
     try:
-        r = (((point1[0]-point2[0])**2)
+        dist = (((point1[0]-point2[0])**2)
             +((point1[1]-point2[1])**2))**0.5
     except:
         print((point1,point2))
         raise ValueError
-    return r
+    return dist
 # This is used to calculate the length of a path
 def path_distance(path):
         start = Point()
@@ -258,28 +229,4 @@ def brute_force(path):
 
     if __name__ == '__main__':
         main()
-# Runs all the algorithms
-def run_algorithms(num_trials):
-        setup()
-        end_distances = {'sort by x':0,'sort by y':0,'next nearest':0,'GA':0,'least closest':0,'two way switch':0, 'three way switch':0}
-        functions = {'sort by x':sort_by_x,'sort by y':sort_by_y,'next nearest':next_nearest,'GA':GA,'least closest':least_closest,'two way switch':twoOptSwap, 'three way switch':threeOptSwap}
-        for i in range(num_trials):
-                _points_ = [(0,0)]
-                _points_ += generate_points(num_points,range_of_coords)
-                _points_.append((0,0))
-                print('\nWe are on trial ' + str(i+1) + '\n')
-                distances = {'sort by x':0,'sort by y':0,'next nearest':0,'GA':0,'least closest':0,'two way switch':0,'three way switch':0}
-                path_list = copy.copy(_points_)
-                for i in distances:
-                    distances[i] = functions[i](path_list)
-                    end_distances[i] += distances[i]
-                if print_distances:
-                        print('The distances are:\n')
-                        pprint(distances)
-        for i in end_distances:
-               end_distances[i] /= num_trials
-        if print_distances:
-                print('The end distances are:\n')
-                pprint(end_distances)
-
 

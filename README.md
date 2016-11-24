@@ -11,5 +11,5 @@ Algoriths so far
 ```
 for i in coords:
   for j in coords:
-    distMatrix[i][j] = dist(coords[i],coords[j]
+    distMatrix[i][j] = dist(coords[i],coords[j])
 ```

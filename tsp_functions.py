@@ -1,7 +1,7 @@
 from random import randrange, randint
 from pprint import pprint
 import copy
-import sort_by_x
+import sort_by_X
 ################
 ## IMPORTANT ###
 ################

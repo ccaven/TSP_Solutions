@@ -1,4 +1,4 @@
-import tsp_functions,copy
+import tsp_functions as fun,copy
 def threeOptSwap(path):
     orig_copy = copy.copy(path)
     test_copy = copy.copy(path)
@@ -10,7 +10,7 @@ def threeOptSwap(path):
         #closest = sorted([[pythag_distance(path[coord],otherpoints[j][0]),otherpoints[j][1]] for j in range(len(otherpoints))])
         closest = []
         for j in range(len(otherpoints)):
-            closest.append([pythag_distance(path[coord],otherpoints[j][0]),otherpoints[j][1]])
+            closest.append([fun.pythag_distance(path[coord],otherpoints[j][0]),otherpoints[j][1]])
         closest.sort()
         closest5 = closest[:5]
         # Go through the closest 5 and do the swapping procedure
@@ -45,7 +45,7 @@ def threeOptSwap(path):
                     test_copy[node1] = copy.copy(node3_copy)
                     test_copy[closest5[node2][1]] = copy.copy(node1_copy)
                     test_copy[closest5[node3][1]] = copy.copy(node2_copy)
-                if path_distance(test_copy) < path_distance(orig_copy):
+                if fun.path_distance(test_copy) < fun.path_distance(orig_copy):
                     orig_copy = copy.copy(test_copy)
                 else:
                     test_copy = copy.copy(orig_copy)

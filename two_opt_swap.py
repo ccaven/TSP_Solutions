@@ -23,4 +23,4 @@ def twoOptSwap(path):
             else:
                 test_copy = copy.copy(orig_copy)
             # return end_path
-    return tsp_functions.path_distance(orig_copy)
+    return fun.path_distance(orig_copy)

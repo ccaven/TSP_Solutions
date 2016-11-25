@@ -15,5 +15,5 @@ for i in range(num_trials):
     distances["sort by y"] = sort_by_Y.sort_by_y(coords)
     distances["sort by x"] = sort_by_X.sort_by_x(coords)
     distances["next nearest"] = next_nearest.greedy_algo(coords)
-    distances["ga"] = Genetic_Algorithm.GA(coords)
     distances["sa"] = anneal.SimAnneal(coords).Anneal()
+    distances["ga"] = Genetic_Algorithm.GA(coords)

@@ -1,5 +1,6 @@
 import math
 import random
+import copy
 import visualize_tsp
 import matplotlib.pyplot as plt
 
@@ -16,7 +17,7 @@ class SimAnneal(object):
         self.nodes = [i for i in range(self.N)]
 
         self.cur_solution = self.initialSolution()
-        self.best_solution = self.cur_solution.copy()
+        self.best_solution = copy.copy(self.cur_solution)
 
         self.cur_fitness = self.fitness(self.cur_solution)
         self.initial_fitness = self.cur_fitness
@@ -31,7 +32,7 @@ class SimAnneal(object):
         cur_node = random.choice(self.nodes)
         solution = [cur_node]
 
-        free_list = self.nodes.copy()
+        free_list = copy.copy(self.nodes)
         free_list.remove(cur_node)
 
         while free_list:
@@ -92,7 +93,7 @@ class SimAnneal(object):
         Execute simulated annealing algorithm
         '''
         while self.T >= self.stopping_temperature:
-            candidate = self.cur_solution.copy()
+            candidate = copy.copy(self.cur_solution)
             l = random.randint(2, self.N-1)
             i = random.randint(0, self.N-l)
             candidate[i:(i+l)] = reversed(candidate[i:(i+l)])

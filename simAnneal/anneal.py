@@ -103,6 +103,7 @@ class SimAnneal(object):
 
         print('Best fitness obtained: ', self.best_fitness)
         print('Improvement over greedy heuristic: ', round(( self.initial_fitness - self.best_fitness) / (self.initial_fitness),4))
+        return self.best_fitness
 
     def visualizeRotes(self):
         '''

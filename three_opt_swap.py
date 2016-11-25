@@ -1,4 +1,4 @@
-import tsp_functions
+import tsp_functions,copy
 def threeOptSwap(path):
     orig_copy = copy.copy(path)
     test_copy = copy.copy(path)

@@ -1,4 +1,5 @@
 import tsp_functions as fun,copy
+from random import randint
 def threeOptSwap(path):
     orig_copy = copy.copy(path)
     test_copy = copy.copy(path)
@@ -49,4 +50,4 @@ def threeOptSwap(path):
                     orig_copy = copy.copy(test_copy)
                 else:
                     test_copy = copy.copy(orig_copy)
-    return funs.path_distance(orig_copy)
+    return fun.path_distance(orig_copy)

@@ -48,3 +48,5 @@ def draw_points(coords,color='green'):
                 turtle.goto(point[0],point[1])
         turtle.circle(5)
         turtle.home()
+def dist_matrix(coords):
+    return [[path_distance(i,j) for i in coords] for j in coords]

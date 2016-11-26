@@ -21,7 +21,18 @@ Some algorithms use distance matrixes to find the distance of a path
 distMatrix = [[distance(i,j) for i in coords] for j in coords]
 ```
 
-The solution for each algorithm can be plotted on a map using matplotlib
+The solution for each algorithm can be plotted on a map using matplotlib. Here is an example of Simulated Annealng:
 
 ![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/Simulated_Anneal_pic.png)
 
+Here is an example of the Greedy Algorithm:
+
+Sort By X:
+
+Sort By Y:
+
+Two Opt Swap:
+
+Three Opt Swap:
+
+Genetic Algorithm:

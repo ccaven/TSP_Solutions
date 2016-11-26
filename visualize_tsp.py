@@ -13,8 +13,8 @@ def plotTSP(paths, points, num_iters=1):
 
     x = []; y = []
     for i in paths[0]:
-        x.append(i[0])
-        y.append(i[1])
+        x.append(points[i][0])
+        y.append(points[i][1])
 
     plt.plot(x, y, 'co')
 

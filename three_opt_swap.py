@@ -6,28 +6,26 @@ def threeOptSwap(path):
     initial_solution = next_nearest.greedy_algo(path)[1]
     orig_copy = copy.copy(initial_solution)
     test_copy = copy.copy(initial_solution)
-    for i in orig_copy:
+    for coord in orig_copy:
         #Other points, not including the current point
         otherpoints = [j for j in orig_copy]
-        otherpoints.remove(i)
+        otherpoints.remove(coord)
 
         #Closest 5 points
-        closest = [[fun.pythag_distance(i,j),j] for j in otherpoints]
+        closest = [[fun.pythag_distance(coord,j),j] for j in otherpoints]
         closest.sort(key= lambda s:s[0])
         closest5_duel = closest[0:5]
         closest5 = [k[1] for k in closest5_duel]
 
         for j in closest5:
             # Set nodes
-            swap_p = i
-            bswap_p = i
-            print i
+            swap_p = coord
+            bswap_p = coord
             new_p = j
             bnew_p = j
-            print j
             new2_p = choice(closest5)
             bnew2_p = choice(closest5)
-            
+
             # Swapping procedure
             solutions = ["132","213","231","312","321"]
             for i in solutions:
@@ -41,4 +39,3 @@ def threeOptSwap(path):
                 else:
                         test_copy = copy.copy(orig_copy)
     return fun.path_distance(orig_copy)
-threeOptSwap(fun.generate_points(25,50))

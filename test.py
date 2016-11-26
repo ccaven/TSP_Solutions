@@ -33,5 +33,5 @@ for i in range(num_trials):
     end_distances["ga"] += distances["ga"]
 for i in end_distances:
     end_distances[i] /= num_trials
-print("The end distances are:")
+print("The end averages are:")
 pprint.pprint(end_distances)

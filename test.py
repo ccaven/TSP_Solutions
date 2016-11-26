@@ -21,6 +21,7 @@ for i in range(num_trials):
     distances["three opt swap"] = three_opt_swap.threeOptSwap(coords)
     distances["next nearest"] = next_nearest.greedy_algo(coords)[0]
     distances["sa"] = anneal.SimAnneal(coords).Anneal()
+    
     #distances["ga"] = Genetic_Algorithm.GA(coords)
     print("Trial " + str(i) + ":")
     pprint.pprint(distances)

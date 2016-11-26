@@ -17,6 +17,18 @@ def generate_points(quantity,_range_):
     return [Point(randrange(-_range_,_range_), # x
                   randrange(-_range_,_range_))# y
                   for i in range(quantity)] # number of points
+def get_points(filename):
+    coords = []
+    with open('coord.txt','r') as f:
+        i = 0
+        for line in f.readlines():
+            line = [float(i.replace('\n','')) for i in line.split(' ')]
+            coords.append([])
+            for j in range(1,3):
+                coords[i].append(line[j])
+            i += 1
+    return coords
+
 # 3D pythag distance
 def pythag_distance(point1,point2):
     try:

@@ -1,53 +1,44 @@
 import tsp_functions as fun,copy
 from random import randint
+from random import choice
+import next_nearest
 def threeOptSwap(path):
-    orig_copy = copy.copy(path)
-    test_copy = copy.copy(path)
-    for coord in range(len(path)):
-        otherpoints = []
-        for i in range(len(orig_copy)):
-            if orig_copy[i] != coord:
-                otherpoints.append([orig_copy[i],i])
-        #closest = sorted([[pythag_distance(path[coord],otherpoints[j][0]),otherpoints[j][1]] for j in range(len(otherpoints))])
-        closest = []
-        for j in range(len(otherpoints)):
-            closest.append([fun.pythag_distance(path[coord],otherpoints[j][0]),otherpoints[j][1]])
-        closest.sort()
-        closest5 = closest[:5]
-        # Go through the closest 5 and do the swapping procedure
-        for i in range(len(closest5)):
-            # Name all the nodes
-            node1 = copy.copy(coord)
-            node1_copy = orig_copy[node1]
-            node2 = copy.copy(i)
-            node2_copy = orig_copy[closest5[node2][1]]
-            node3 = copy.copy(randint(-i,i))
-            node3_copy = orig_copy[closest5[node3][1]]
-            # Swap nodes
-            solutions  = ["bca","cab","bac","acb","cba"]
+    initial_solution = next_nearest.greedy_algo(path)[1]
+    orig_copy = copy.copy(initial_solution)
+    test_copy = copy.copy(initial_solution)
+    for i in orig_copy:
+        #Other points, not including the current point
+        otherpoints = [j for j in orig_copy]
+        otherpoints.remove(i)
+
+        #Closest 5 points
+        closest = [[fun.pythag_distance(i,j),j] for j in otherpoints]
+        closest.sort(key= lambda s:s[0])
+        closest5_duel = closest[0:5]
+        closest5 = [k[1] for k in closest5_duel]
+
+        for j in closest5:
+            # Set nodes
+            swap_p = i
+            bswap_p = i
+            print i
+            new_p = j
+            bnew_p = j
+            print j
+            new2_p = choice(closest5)
+            bnew2_p = choice(closest5)
+            
+            # Swapping procedure
+            solutions = ["132","213","231","312","321"]
             for i in solutions:
-                if i == "acb":
-                    test_copy[closest5[node2][1]] = copy.copy(node3_copy)
-                    test_copy[closest5[node3][1]] = copy.copy(node2_copy)
-
-                if i == "bac":
-                    test_copy[node1] = copy.copy(node2_copy)
-                    test_copy[closest5[node2][1]] = copy.copy(node1_copy)
-
-                if i == "cba":
-                    test_copy[node1] = copy.copy(node3_copy)
-                    test_copy[closest5[node3][1]] = copy.copy(node1_copy)
-
-                if i == "bca":
-                    test_copy[node1] = copy.copy(node2_copy)
-                    test_copy[closest5[node2][1]] = copy.copy(node3_copy)
-                    test_copy[closest5[node3][1]] = copy.copy(node1_copy)
-                if i == "cab":
-                    test_copy[node1] = copy.copy(node3_copy)
-                    test_copy[closest5[node2][1]] = copy.copy(node1_copy)
-                    test_copy[closest5[node3][1]] = copy.copy(node2_copy)
+                nodes = list(i)
+                real_nodes = {"1":swap_p,"2":new_p,"3":new2_p}
+                path_i = {"1":test_copy.index(swap_p),"2":test_copy.index(new_p),"3":test_copy.index(new2_p)}
+                for i in nodes:
+                    test_copy[path_i[i]] = real_nodes[i]
                 if fun.path_distance(test_copy) < fun.path_distance(orig_copy):
-                    orig_copy = copy.copy(test_copy)
+                        orig_copy = copy.copy(test_copy)
                 else:
-                    test_copy = copy.copy(orig_copy)
+                        test_copy = copy.copy(orig_copy)
     return fun.path_distance(orig_copy)
+threeOptSwap(fun.generate_points(25,50))

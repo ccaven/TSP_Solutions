@@ -19,19 +19,18 @@ for i in range(num_trials):
     distances["sort by x"] = sort_by_X.sort_by_x(coords)
     distances["two opt swap"] = two_opt_swap.twoOptSwap(coords)
     distances["three opt swap"] = three_opt_swap.threeOptSwap(coords)
-    distances["next nearest"] = next_nearest.greedy_algo(coords)
+    distances["next nearest"] = next_nearest.greedy_algo(coords)[0]
     distances["sa"] = anneal.SimAnneal(coords).Anneal()
     #distances["ga"] = Genetic_Algorithm.GA(coords)
     print("Trial " + str(i) + ":")
     pprint.pprint(distances)
-    end_distances["sort by y"] = end_distances["sort by y"]
-    end_distances["sort by y"] = end_distances["sort by y"]
-    end_distances["sort by x"] = end_distances["sort by y"]
-    end_distances["two opt swap"] = end_distances["sort by y"]
-    end_distances["three opt swap"] = end_distances["sort by y"]
-    end_distances["next nearest"] = end_distances["sort by y"]
-    end_distances["sa"] = end_distances["sort by y"]
-    end_distances["ga"] = end_distances["sort by y"]
+    end_distances["sort by y"] += end_distances["sort by y"]
+    end_distances["sort by x"] += end_distances["sort by x"]
+    end_distances["two opt swap"] += end_distances["two opt swap"]
+    end_distances["three opt swap"] += distances["three opt swap"]
+    end_distances["next nearest"] += distances["next nearest"]
+    end_distances["sa"] += distances["sa"]
+    end_distances["ga"] += distances["ga"]
 for i in end_distances:
     end_distances[i] /= num_trials
 print("The end distances are:")

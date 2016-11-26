@@ -3,6 +3,7 @@ import random
 import copy
 import visualize_tsp
 import matplotlib.pyplot as plt
+import tsp_functions as fun
 
 class SimAnneal(object):
 
@@ -34,13 +35,18 @@ class SimAnneal(object):
 
         free_list = copy.copy(self.nodes)
         free_list.remove(cur_node)
-
         while free_list:
-            closest_dist = min([self.dist_matrix[cur_node][j] for j in free_list])
-            cur_node = self.dist_matrix[cur_node].index(closest_dist)
+            closest_dist = [[self.dist_matrix[cur_node][j],j] for j in free_list]
+            #print closest_dist
+            closest_dist.sort()
+            #print closest_dist
+            try:
+                cur_node = closest_dist[0][1]
+            except:
+                print cur_node
+                raise Exception
             free_list.remove(cur_node)
             solution.append(cur_node)
-
         return solution
 
     def dist(self, coord1, coord2):

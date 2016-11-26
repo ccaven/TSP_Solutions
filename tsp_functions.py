@@ -1,7 +1,6 @@
 from random import randrange, randint
 from pprint import pprint
 import copy
-import sort_by_X
 ################
 ## IMPORTANT ###
 ################
@@ -49,4 +48,4 @@ def draw_points(coords,color='green'):
         turtle.circle(5)
         turtle.home()
 def dist_matrix(coords):
-    return [[path_distance(i,j) for i in coords] for j in coords]
+    return [[pythag_distance(i,j) for i in coords] for j in coords]

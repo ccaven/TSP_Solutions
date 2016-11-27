@@ -27,12 +27,23 @@ The solution for each algorithm can be plotted on a map using matplotlib. Here i
 
 Here is an example of the Greedy Algorithm:
 
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/next_nearest.png)
+
 Sort By X:
+
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/sort_by_x.png)
 
 Sort By Y:
 
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/sort_by_y.png)
+
 Two Opt Swap:
+
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/two_opt_swap.png)
 
 Three Opt Swap:
 
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/three_opt_swap.png)
+
 Genetic Algorithm:
+

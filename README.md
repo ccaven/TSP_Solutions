@@ -23,27 +23,27 @@ distMatrix = [[distance(i,j) for i in coords] for j in coords]
 
 The solution for each algorithm can be plotted on a map using matplotlib. Here is an example of Simulated Annealng:
 
-![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/Simulated_Anneal_pic.png)
+![Simulated Annealing Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/Simulated_Anneal_pic.png)
 
 Here is an example of the Greedy Algorithm:
 
-![Greedy Algorithm Image](https://github.com/ccaven/TSP_Solutions/blob/master/next_nearest.png)
+![Greedy Algorithm Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/next_nearest.png)
 
 Sort By X:
 
-![Sort by X Image](https://github.com/ccaven/TSP_Solutions/blob/master/sort_by_x.png)
+![Sort by X Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/sort_by_x.png)
 
 Sort By Y:
 
-![Sort by Y Image](https://github.com/ccaven/TSP_Solutions/blob/master/sort_by_y.png)
+![Sort by Y Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/sort_by_y.png)
 
 Two Opt Swap:
 
-![Two Opt Swap Image](https://github.com/ccaven/TSP_Solutions/blob/master/two_opt_swap.png)
+![Two Opt Swap Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/two_opt_swap.png)
 
 Three Opt Swap:
 
-![Three Opt Image](https://github.com/ccaven/TSP_Solutions/blob/master/three_opt_swap.png)
+![Three Opt Image](https://github.com/ccaven/TSP_Solutions/blob/master/pics/three_opt_swap.png)
 
 Genetic Algorithm:
 

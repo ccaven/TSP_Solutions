@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plotTSP(paths, points, num_iters=1):
+def plotTSP(paths, points, type_, num_iters=1):
 
     """
     path: List of lists with the different orders in which the nodes are visited
@@ -12,10 +12,14 @@ def plotTSP(paths, points, num_iters=1):
     # coordinates
 
     x = []; y = []
-    for i in paths[0]:
-        x.append(points[i][0])
-        y.append(points[i][1])
-
+    if type_ == "sa":
+        for i in paths[0]:
+            x.append(points[i][0])
+            y.append(points[i][1])
+    else:
+        for i in paths[0]:
+            x.append(i[0])
+            y.append(i[1])
     plt.plot(x, y, 'co')
 
     # Set a scale for the arrow heads (there should be a reasonable default for this, WTF?)

@@ -38,4 +38,4 @@ def threeOptSwap(path):
                         orig_copy = copy.copy(test_copy)
                 else:
                         test_copy = copy.copy(orig_copy)
-    return fun.path_distance(orig_copy)
+    return (fun.path_distance(orig_copy),orig_copy)

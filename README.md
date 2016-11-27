@@ -6,7 +6,7 @@ Algorithms so far:
 * Greedy Algorithm
 * Two Opt Swap
 * Three Opt Swap
-* Simmulated Annealing
+* Simulated Annealing
 * Genetic Algorithm
 
 Uses pythagorean distance

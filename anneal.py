@@ -110,13 +110,14 @@ class SimAnneal(object):
 
         print('Best fitness obtained: ', self.best_fitness)
         print('Improvement over greedy heuristic: ', round(( self.initial_fitness - self.best_fitness) / (self.initial_fitness),4))
-        return self.best_fitness
+
+        return (self.best_fitness,self.best_solution)
 
     def visualizeRotes(self):
         '''
         Visualize the TSP route with matplotlib
         '''
-        visualize_tsp.plotTSP([self.best_solution], self.coords)
+        visualize_tsp.plotTSP([self.best_solution], self.coords,"sa")
 
     def plotLearning(self):
         '''

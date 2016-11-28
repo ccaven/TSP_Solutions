@@ -1,4 +1,5 @@
 # Genetic Algorithm
+generations = 300
 def GA(path):
     path_copy = list(path)
     from pyevolve import G1DList,GAllele,GSimpleGA,Mutators,Crossovers,Consts
@@ -32,7 +33,9 @@ def GA(path):
                 dist=(dx*dx + dy*dy)** 0.5
                 matrix[i,j] = dist
         return matrix
-
+    def init_solution(coords):
+        import next_nearest as nn
+        return nn.greedy_algo(coords)[1]
     # This is the pyevolve version of path_distance
     def tour_length(matrix, tour):
         """ Returns the total length of the tour """
@@ -46,7 +49,7 @@ def GA(path):
     # This is for making images for the path that the GA took
     def write_tour_to_img(coords, tour, img_file):
         """ The function to plot the graph """
-        padding=20
+        padding=400
         coords=[(x+padding,y+padding) for (x,y) in coords]
         maxx,maxy=0,0
         for x,y in coords:
@@ -73,27 +76,34 @@ def GA(path):
         img.save(img_file, "PNG")
 
     # The initializator for the TSP
-    def G1DListTSPInitializator(genome, **args):
-        lst = [i for i in xrange(genome.getListSize())]
-        random.shuffle(lst)
+    def G1DListTSPInitializator(genome,**args):
+        lst = []
+        size = genome.getListSize()
+        coords = get_coords(path_copy)
+        print coords
+        new_coords = init_solution(coords)[1]
+        print new_coords
+        for i in range(size):
+            lst.append(coords.index(new_coords[i]))
         genome.setInternalList(lst)
     # This updates the score
-    def evolve_callback(ga_engine):
+    def evolve_callback(ga_engine,points):
         global LAST_SCORE
         if ga_engine.getCurrentGeneration() % 100 == 0:
             best = ga_engine.bestIndividual()
             if LAST_SCORE != best.getRawScore():
-                write_tour_to_img( coords, best, "tspimg/tsp_result_%d.png" % ga_engine.getCurrentGeneration())
+                print points
+                write_tour_to_img( points, best, "tspimg_tsp_result_%d.png" % ga_engine.getCurrentGeneration())
                 LAST_SCORE = best.getRawScore()
         return False
     def get_coords(points):
-        global coords
         coords = []
         for point in points:
-            coords.append((point[0],point[1]))
+            coords.append(point)
+        return coords
     def ga_run():
         global cm, coords, WIDTH, HEIGHT,best
-        get_coords(path_copy)
+        coords = get_coords(path_copy)
         cm     = cartesian_matrix(coords)
         genome = G1DList.G1DList(len(coords))
 
@@ -103,13 +113,18 @@ def GA(path):
 
         ## This sets all the GA parameters
         ga = GSimpleGA.GSimpleGA(genome)
-        ga.setGenerations(generations)
+        ga.setGenerations(1000)
         ga.setMinimax(Consts.minimaxType["minimize"])
-        ga.setCrossoverRate(crossover_rate)
-        ga.setMutationRate(mutation_rate)
-        ga.setPopulationSize(population)
-        ga.evolve(freq_stats=frequency_stats) # Runs the GA
+        ga.setCrossoverRate(1.0)
+        ga.setMutationRate(0.01)
+        ga.setPopulationSize(80)
+        ga.evolve(freq_stats=50) # Runs the GA
         best = ga.bestIndividual() # Finds the best scoring individual
+        print coords
+        evolve_callback(ga,coords)
         return best.getRawScore() # Return that individual's score
  # This returns the value of the score that is returned in ga_run()
     return ga_run()
+import tsp_functions as fun
+
+print GA(fun.generate_points(25,50))

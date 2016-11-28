@@ -7,10 +7,10 @@ import two_opt_swap
 import pprint
 import tsp_functions
 import Genetic_Algorithm
-import anneal
-import visualize_tsp
+#import anneal
+#import visualize_tsp
 end_distances = {"sort by x":0,"sort by y":0,"two opt swap":0,"three opt swap":0,"next nearest":0,"brute force":0,"ga":0,"sa":0}
-num_trials = 10
+num_trials = 1
 for i in range(num_trials):
     #Test comment
     distances = {"sort by x":0,"sort by y":0,"next nearest":0,"two opt swap":0,"three opt swap":0,"brute force":0,"ga":0,"sa":0}
@@ -20,8 +20,8 @@ for i in range(num_trials):
     distances["two opt swap"] = two_opt_swap.twoOptSwap(coords)
     distances["three opt swap"] = three_opt_swap.threeOptSwap(coords)
     distances["next nearest"] = next_nearest.greedy_algo(coords)[0]
-    distances["sa"] = anneal.SimAnneal(coords).Anneal()
-    #distances["ga"] = Genetic_Algorithm.GA(coords)
+    #distances["sa"] = anneal.SimAnneal(coords).Anneal()
+    distances["ga"] = Genetic_Algorithm.GA(coords)
     print("Trial " + str(i) + ":")
     pprint.pprint(distances)
     end_distances["sort by y"] += end_distances["sort by y"]

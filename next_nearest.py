@@ -16,8 +16,10 @@ def greedy_algo(coords):
         try:
             cur_node = closest_dist[0][1]
         except:
-            print cur_node
+            print(cur_node)
             raise Exception
         free_list.remove(cur_node)
         solution.append(cur_node)
+    print solution
     return [fun.path_distance(solution),solution]
+print greedy_algo(fun.generate_points(25,50))

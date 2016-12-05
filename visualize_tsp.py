@@ -13,13 +13,11 @@ def plotTSP(paths, points, type_, num_iters=1):
 
     x = []; y = []
     if type_ == "sa":
-        for i in paths[0]:
-            x.append(points[i][0])
-            y.append(points[i][1])
+        x = [points[i][0] for i in paths[0]]
+        y = [points[i][1] for i in paths[0]]
     else:
-        for i in paths[0]:
-            x.append(i[0])
-            y.append(i[1])
+        x = [i[0] for i in paths[0]]
+        y = [i[1] for i in paths[0]]
     plt.plot(x, y, 'co')
 
     # Set a scale for the arrow heads (there should be a reasonable default for this, WTF?)
@@ -59,6 +57,6 @@ def plotTSP(paths, points, type_, num_iters=1):
                 length_includes_head = True)
 
     #Set axis too slitghtly larger than the set of x and y
-    plt.xlim(min(x)*1.1, max(x)*1.1)
-    plt.ylim(min(y)*1.1, max(y)*1.1)
+    plt.xlim(-10, max(x)*1.1)
+    plt.ylim(-10, max(y)*1.1)
     plt.show()

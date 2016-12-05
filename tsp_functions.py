@@ -14,8 +14,8 @@ def Point(x=0,y=0):
         return (x,y)
 # function for generating points, may put control group in it
 def generate_points(quantity,_range_):
-    return [Point(randrange(-_range_,_range_), # x
-                  randrange(-_range_,_range_))# y
+    return [Point(randrange(0,_range_), # x
+                  randrange(0,_range_))# y
                   for i in range(quantity)] # number of points
 def get_points(filename):
     coords = []

@@ -25,7 +25,7 @@ class single_path(object):
             for para in self.parameters:
                 if i[0] > para[0][0] and i[0] < para[1][0] and i[1] > para[0][1] and i[1] < para[1][1]:
                     point_descriptions[i] = para
-        sections = [[[] for j in range(range_y))] for i in range(range_x)]
+        sections = [[[] for j in range(range_y)] for i in range(range_x)]
         for point in point_descriptions:
             secti = point_descriptions[i]
             sectx = secti[0][0]/xsize
@@ -54,5 +54,6 @@ class single_path(object):
     def combined(self):
         for group in self.sections:
             # do stuff
+            pass
     def solve(self):
         return (fun.path_distance(self.coords),self.coords)

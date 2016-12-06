@@ -10,9 +10,7 @@ def greedy_algo(coords):
     dist_matrix = fun.dist_matrix(coords)
     while free_list:
         closest_dist = [[fun.pythag_distance(cur_node,j),j] for j in free_list]
-        #print closest_dist
         closest_dist.sort()
-        #print closest_dist
         try:
             cur_node = closest_dist[0][1]
         except:
@@ -20,6 +18,5 @@ def greedy_algo(coords):
             raise Exception
         free_list.remove(cur_node)
         solution.append(cur_node)
-    print solution
     return [fun.path_distance(solution),solution]
-print greedy_algo(fun.generate_points(25,50))
+

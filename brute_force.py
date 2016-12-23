@@ -1,60 +1,42 @@
-def brute_force(path):
-    points = list(path)
-    import itertools
+#list_perms.py
+import itertools,math,copy
+import tsp_functions as tsp
 
-    def distance(p1, p2):
-        return (((((p1[0]-p2[0])**2)
-                +((p1[1]-p2[1])**2))**0.5)
-                +(((p1[2]-p2[2])**2)))**0.5
+def combinePermutations(perms):
+    a = min(min(p) for p in perms)
+    b = max(max(p) for p in perms)
+    d = {i:i for i in range(a,b+1)}
+    for p in perms:
+        pairs = zip(sorted(p),p)
+        for i,j in pairs:
+            d[i] = j
+    return tuple(d[i] for i in range(a,b+1))
 
-    def calCosts(routes, nodes):
-        travelCosts = []
+def permute(cell):
+    return [p for p in itertools.permutations(cell)]
 
-        for route in routes:
-            travelCost = 0
+def getAllPerms(cells):
+    return itertools.product(*(permute(cell) for cell in cells))
 
-            #Sums up the travel cost
-            for i in range(1,len(route)):
-                #takes an element of route, uses it to find the corresponding coords and calculates the distance
-                travelCost += distance(nodes[str(route[i-1])], nodes[str(route[i])])
+def listGoodPerms(cells):
+    products = getAllPerms(cells)
+    return [perms for perms in products]
 
-            travelCosts.append(travelCost)
+def distance(p1,p2):
+    try:
+        return math.sqrt(((p1[0]-p2[1])**2) + ((p1[1]-p2[1])**2))
+    except Exception as e:
+        print((p1,p2))
+        raise e
 
-        #pulls out the smallest travel cost
-        smallestCost = min(travelCosts)
-        shortest = (routes[travelCosts.index(smallestCost)], smallestCost)
+def find_shortest(perms):
+    t = []
+    for path in perms:
+        t.append([tsp.path_distance(path),path])
+    t.sort(key=lambda x:x[0])
+    return t[0][1]
+coords = tsp.generate_points(15,50)
 
-        #returns tuple of the route and its cost
-        return shortest
+perms = listGoodPerms(coords)
 
-    def genRoutes(routeLength):
-        #lang hold all the 'alphabet' of nodes
-        lang = [ x for x in range(2,routeLength+1) ]
-
-        #uses built-in itertools to generate permutations
-        routes = list(map(list, itertools.permutations(lang)))
-        #inserts the home city, must be the first city in every route
-        for x in routes:
-            x.insert(0,1)
-        return routes
-
-    def main(nodes=None, instanceSize=5):
-        #nodes and instanceSize are passed into main() using another program
-        #I just gave them default values for this example
-
-        #The Node lookup table.
-        Nodes = {}
-        for i in range(len(points)):
-            x = points[i].x
-            y = points[i].y
-            z = points[i].z
-            Nodes[str(i)] = (x,y,z)
-
-        routes = genRoutes(instanceSize)
-        shortest = calCosts(routes, Nodes)
-
-        print("Shortest Route: ", shortest[0])
-        print("Travel Cost: ", shortest[1])
-
-    if __name__ == '__main__':
-        main()
+print(tsp.path_distance(find_shortest(perms)))

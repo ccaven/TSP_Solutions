@@ -124,4 +124,3 @@ class SimAnneal(object):
         '''
         plt.plot([i for i in range(len(self.fitness_list))], self.fitness_list)
         plt.show()
-

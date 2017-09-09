@@ -8,9 +8,3 @@ Algoriths so far
 * Three Opt Swap
 * Simmulated Annealing
 * Genetic Algorithm
-```
-for i in coords:
-  for j in coords:
-    distMatrix[i][j] = dist(coords[i],coords[j])
-```
-_test_

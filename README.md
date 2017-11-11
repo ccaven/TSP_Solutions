@@ -1,6 +1,6 @@
 # TSP Solutions
 6th grade science fair project - test multiple solutions for TSP
-Algoriths so far
+Algorithms so far
 * Sort by X
 * Sort by Y
 * Greedy Algorithm
